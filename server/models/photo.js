@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING
   }, {});
   photo.associate = function(models) {
+    //photo.belongsTo(models.album, {as: 'photos', foreignKey: 'album'});
     // associations can be defined here
   };
   return photo;

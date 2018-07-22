@@ -1,0 +1,1 @@
+export const getAlbums = (state) => {console.log(state); return state};

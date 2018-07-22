@@ -4,13 +4,17 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const history = require('connect-history-api-fallback');
+const webpack = require('webpack');
+const config = require('../webpack.config.js')
+const compiler = webpack(config);
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+var router = require('./routes/index');
 
 var app = express();
 
 // view engine setup
+app.use(history());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -19,10 +23,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+app.use(express.static(path.join(__dirname, '../dist')));
+
+app.use(require('webpack-dev-middleware')(compiler, { publicPath: config.output.publicPath, historyApiFallback: true }));
+app.use(require('webpack-hot-middleware')(compiler));
+app.use('/', router);
+
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
