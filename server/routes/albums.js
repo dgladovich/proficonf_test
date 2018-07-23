@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
     let offset = 0;
     let itemsPerPage = 10;
 
-    if (req.query) {
+    if ( Object.keys(req.query).length !== 0 ) {
         page = req.query.page;
         offset = page * itemsPerPage;
     }

@@ -14,14 +14,14 @@ function action(type, payload = {}) {
 
 export const albums = {
     request: () => action(FETCH_ALBUMS_PAGE),
-    success: (response) => action(FETCH_ALBUMS_SUCCESS, {response}),
+    success: (data) => action(FETCH_ALBUMS_SUCCESS, data),
     failure: (error) => action(FETCH_ALBUMS_FAIL, {error}),
-}
+};
 export const photos = {
     request: () => action(FETCH_PHOTOS_PAGE),
     success: (response) => action(FETCH_PHOTOS_SUCCESS, {response}),
     failure: (error) => action(FETCH_PHOTOS_FAIL, {error}),
-}
+};
 
-export const loadAlbumsPage = (page)=> action(FETCH_ALBUMS_PAGE, {page});
-export const loadPhotosPage = (page)=> action(FETCH_PHOTOS_PAGE, {page});
+export const loadAlbumsPage = (pageNumber)=> action(FETCH_ALBUMS_PAGE, {pageNumber});
+export const loadPhotosPage = (pageNumber)=> action(FETCH_PHOTOS_PAGE, {pageNumber});

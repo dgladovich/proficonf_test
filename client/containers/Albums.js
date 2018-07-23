@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {loadAlbumsPage} from "../actions";
+import AlbumsComponent from '../components/Albums/AlbumsComponent';
+
 
 class Albums extends Component {
-    componentWillMount(){
-        this.props.loadAlbumsPage();
+    componentDidMount(){
+        this.props.loadAlbumsPage(1);
 
     }
     render() {
+
         return (
-            <div className="App">
-              Albums
-            </div>
+            <AlbumsComponent {...this.props} />
         );
     }
 }
