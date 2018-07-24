@@ -6,6 +6,7 @@ import App from './components/App/App'
 import AlbumsContainer from './containers/Albums';
 import PhotosContainer from './containers/Photos';
 import PhotoContainer from './containers/Photos';
+import AlbumsEditor from './components/Albums/AlbumEditor';
 
 
 
@@ -16,6 +17,7 @@ const Root = ({store}) => (
             <App>
                 <Route exact path="/" component={AlbumsContainer}/>
                 <Route exact path="/albums" component={AlbumsContainer}/>
+                <Route exact path="/albums/create" component={AlbumsEditor}/>
                 <Route path="/albums/:albumId" component={PhotosContainer}/>
                 <Route path="/photos/:photoId" component={PhotoContainer}/>
             </App>

@@ -28,8 +28,8 @@ router.get('/', function (req, res) {
 
                     let response = {
                         pageInfo: {
-                            pagesCount: pagesCount,
-                            pageNumber: page
+                            pagesCount: +pagesCount,
+                            pageNumber: +page
                         },
                         items: albums
                     };

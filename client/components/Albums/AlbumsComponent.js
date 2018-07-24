@@ -1,27 +1,24 @@
 import React, { Component } from 'react';
-
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import {Link} from 'react-router-dom';
 import Pagination from 'material-ui-pagination';
-
+import AlbumsList from './AlbumsList';
 class Albums extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
 
     }
-    changePage(){
-        this.props.changePage(this.state.number)
-    }
     render() {
-       // console.log(this.props)
+
         return (
             <div className="App">
-                <button onClick={this.changePage.bind(this)}>next page</button>
+                <Link to={'/albums/create'}>Create album</Link>
+                <AlbumsList albums={this.props.albums} />
                 <Pagination
                     total = { this.props.total }
                     current = { this.props.number }
                     display = { this.props.display }
-                    /*onChange = { number => this.setState({ number }) }*/
+                    onChange = { this.props.changePage }
                 />
             </div>
         );

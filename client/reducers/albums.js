@@ -2,7 +2,8 @@ import {FETCH_ALBUMS_PAGE, FETCH_ALBUMS_SUCCESS, FETCH_ALBUMS_FAIL} from '../con
 
 let initialState = {
     pageInfo: {
-        pageNumber: 1
+        pageNumber: 1,
+        pagesCount: 1
     },
     items: []
 }

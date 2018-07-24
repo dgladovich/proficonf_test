@@ -10,10 +10,11 @@ import AlbumsComponent from '../components/Albums/AlbumsComponent';
 class Albums extends Component {
     constructor(props) {
         super(props);
+        let {pagesCount, pageNumber} = props.pageInfo;
         this.state = {
-            total: props.pageInfo.pagesCount,
+            total: pagesCount,
             display: 5,
-            number: 1,
+            number: pageNumber,
         };
     }
 
@@ -24,25 +25,31 @@ class Albums extends Component {
         this.props.loadAlbumsPage(page);
 
     }
-    shouldComponentUpdate(nextProps, state){
-        console.log(nextProps, state)
+
+    componentDidUpdate(prevProps, prevState) {
+        let {pagesCount, pageNumber} = this.props.pageInfo;
+
+        if (prevProps.items !==  this.props.items) {
+            this.setState({
+                total: pagesCount,
+                number: pageNumber
+            });
+        }
     }
 
-    changePage(page) {
-        this.props.history.push({pathname: '/albums', search: `?page=${page}`});
-        this.props.loadAlbumsPage(page);
-
+    changePage(number) {
+        this.props.history.push({pathname: '/albums', search: `?page=${number}`});
+        this.props.loadAlbumsPage(number);
     }
 
     render() {
-        console.log(this.props)
         return (
             <AlbumsComponent
                 changePage={this.changePage.bind(this)}
-
                 total={this.state.total}
                 display={this.state.display}
                 number={this.state.number}
+                albums={this.props.items}
             />
         );
     }
