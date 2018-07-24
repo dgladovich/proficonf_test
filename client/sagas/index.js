@@ -13,23 +13,25 @@ import {api} from '../services';
 // id     : login | fullName
 // url    : next page url. If not provided will use pass id to apiFn
 function* fetchEntity(entity, apiFn, page, url) {
-    const {data, error} = yield call(apiFn);
+    const {data, error} = yield call(apiFn, page);
     if (data) {
         yield put(entity.success(data))
     }
-    else
+    else {
         yield put(entity.failure(error))
+    }
 }
 
 const fetchAlbums = fetchEntity.bind(null, albums, api.fetchAlbums);
-const fetchPhotos = fetchEntity.bind(null, photos, api.fetchAlbums);
+const fetchPhotos = fetchEntity.bind(null, photos, api.fethcPhotos);
 
 
 function* watchLoadAlbumsPage() {
     while (true) {
-        yield take(FETCH_ALBUMS_PAGE);
+        const action = yield take(FETCH_ALBUMS_PAGE);
+        const {pageNumber} = action;
 
-        yield fork(fetchAlbums)
+        yield fork(fetchAlbums, pageNumber);
     }
 }
 

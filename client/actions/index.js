@@ -13,7 +13,7 @@ function action(type, payload = {}) {
 }
 
 export const albums = {
-    request: () => action(FETCH_ALBUMS_PAGE),
+    request: (page) => action(FETCH_ALBUMS_PAGE, page),
     success: (data) => action(FETCH_ALBUMS_SUCCESS, data),
     failure: (error) => action(FETCH_ALBUMS_FAIL, {error}),
 };

@@ -1,10 +1,13 @@
 import axios from 'axios';
 
-const fullUrl = '/api/albums';
 
-export const fetchAlbums = () => {
+export const fetchAlbums = (page) => {
+    let url = `/api/albums`;
+    if(page !== 1){
+        url = url + `?page=${page}`
+    }
     return axios
-        .get(fullUrl)
+        .get(url)
         .then(response => ({data: response.data}))
         .catch(error => ({error}))
 };

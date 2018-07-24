@@ -8,11 +8,14 @@ import PhotosContainer from './containers/Photos';
 import PhotoContainer from './containers/Photos';
 
 
+
+
 const Root = ({store}) => (
     <Provider store={store}>
         <Router>
             <App>
                 <Route exact path="/" component={AlbumsContainer}/>
+                <Route exact path="/albums" component={AlbumsContainer}/>
                 <Route path="/albums/:albumId" component={PhotosContainer}/>
                 <Route path="/photos/:photoId" component={PhotoContainer}/>
             </App>

@@ -10,7 +10,6 @@ let initialState = {
 export default function albums(state = initialState, action) {
     switch (action.type) {
         case FETCH_ALBUMS_PAGE:
-            console.log('start', state, action);
             return state;
         case FETCH_ALBUMS_SUCCESS:
             return Object.assign({}, state, {items: action.items, pageInfo: action.pageInfo});

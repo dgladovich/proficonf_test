@@ -1,15 +1,14 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import createSagaMiddleware, { END } from 'redux-saga'
-import {routerReducer} from "react-router-redux";
 import rootReducer from './reducers';
+import { routerMiddleware } from 'react-router-redux'
 
-
-export default function configureStore(preloadedState) {
+export default function configureStore() {
     const sagaMiddleware = createSagaMiddleware();
 
     const store = createStore(
         rootReducer,
-        routerReducer,
+        //applyMiddleware(routerMiddleware),
         applyMiddleware(sagaMiddleware)
     );
     store.runSaga = sagaMiddleware.run;
