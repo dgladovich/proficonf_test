@@ -12,7 +12,7 @@ class Albums extends Component {
 
         return (
             <div className="App">
-                <Link to={'/albums/create'}>Create album</Link>
+                <Link to={'/albumscreate'}>Create album</Link>
                 <AlbumsList albums={this.props.albums} />
                 <Pagination
                     total = { this.props.total }
